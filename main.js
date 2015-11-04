@@ -1,14 +1,13 @@
 jQuery(document).ready(function( ){
-	
-var $input = $('#input');
-var $chat = $('#prompt');
 
-var newText = $input.val();
+var newValue = $('#prompt').val();
 
-var letsAppend = function(){
-$chat.append('<li>').append(newText);
-}
-
-document.addEventListener('keypress', letsAppend);
+$('body').keypress(function() {
+	if (event.keyCode == 13) {
+		console.log( "Handler for .keypress() called." );
+  		$('#log').append('<li>').append(newValue);
+  	}
+});
 
 });
+
