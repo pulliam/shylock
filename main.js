@@ -1,20 +1,17 @@
-// $('body').keypress(function() {
-// 	if (event.keyCode == 13) {
-// 		console.log( "Handler for .keypress() called." );
-//   		$('#log').append('<li>').append($('#prompt').val());
-//   	}
-// });
-jQuery(document).ready(function( ){
+jQuery(document).ready(function(){
+// .match(/\d+/)
 
-var $command = $('.command');
-var $action = $('.action');
-var $quote = $('.quote');
-
-$('body').keypress(function() {
+$('#prompt').keypress(function() {
+	var purseValue = 10000;
+	var whatMyUserTyped = $('#prompt').val();
 	if (event.keyCode == 13) {
-		$command.text('Command: ' + $('#prompt').val());  
-		$action.text('Action: ' + $('#prompt').val());  
-		$quote.text('Quote: ' + $('#prompt').val());  	
+		if (whatMyUserTyped === 'purse'){
+			$('#log li:last').text('ShylockBot pulls out his purse containing '+ purseValue+ ' ducats');	
+		} else {
+			var subtractValue = parseInt(whatMyUserTyped.match(/\d+/));
+			purseValue = (purseValue - subtractValue); //This Part is getting stuck on the first defined value.
+			$('#log li:last').text('ShylockBot gives SOMEONE '+ subtractValue+ ' ducats');
+		}
 	}
 });
 
